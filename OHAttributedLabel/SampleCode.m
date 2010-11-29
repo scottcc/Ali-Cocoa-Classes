@@ -1,5 +1,5 @@
 /**********************************
-* UIAttributedLabel usage example *
+* OHAttributedLabel usage example *
 **********************************/
 
 -(void)initWithHelloWorld
@@ -13,7 +13,7 @@
 	[attrStr setTextColor:[UIColor redColor] range:NSMakeRange(0,5)];
 	
 	
-	/**(2)** Affect the NSAttributedString to the UIAttributedLabel *******/
+	/**(2)** Affect the NSAttributedString to the OHAttributedLabel *******/
 	myAttributedLabel.attributedText = attrStr;
 	// Use the "Justified" alignment
 	myAttributedLabel.textAlignment = UITextAlignmentJustify;
@@ -33,12 +33,32 @@
 	[mas release];
 }
 	
-	
+
+
 
 /** NOTE **
- * we may also directly ask for the attributedString directly as a first step
+ * we may also directly ask for the attributedString directly as a first step,
  * even if we did not initialize it before: in such cases, it will build the
  * NSAttributedString automatically (using the text/font/color/... properties
- * of the UIAttributedLabel) and return it so building it like in the first
+ * of the OHAttributedLabel) and return it... so building it like in the first
  * step above is not actually necessary in all situations!
  */
+
+-(void)initWithHelloWorld_Alternative
+{
+	// Suppose you already have set the following properties of the myAttributedLabel object in InterfaceBuilder:
+	// - 'text' set to "Hello World!"
+	// - fontSize set to 12, text color set to gray
+	
+	/**(1)** Build the NSAttributedString *******/
+	NSMutableAttributedString* attrStr = myAttributedLabel.attributedText;
+	// and only change the color of "Hello"
+	[attrStr setTextColor:[UIColor redColor] range:NSMakeRange(0,5)];
+	
+	
+	/**(2)** Affect the NSAttributedString to the OHAttributedLabel *******/
+	myAttributedLabel.attributedText = attrStr;
+	// Use the "Justified" alignment
+	myAttributedLabel.textAlignment = UITextAlignmentJustify;
+	// "Hello World!" will be displayed in the label, justified, "Hello" in red and " World!" in gray.
+}
