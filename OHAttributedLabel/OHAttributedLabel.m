@@ -95,6 +95,7 @@
 	};
 	CTParagraphStyleRef aStyle = CTParagraphStyleCreate(paraStyles, 2);
 	[self addAttribute:(NSString*)kCTParagraphStyleAttributeName value:(id)aStyle range:range];
+	CFRelease(aStyle);
 }
 
 @end
